@@ -1,14 +1,18 @@
 package com.alexey.quizappmvvm.ui.viewmodel
 
+import android.app.Application
+import android.net.Uri
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alexey.quizappmvvm.data.model.Question
 import com.alexey.quizappmvvm.data.repository.QuestionRepository
-import com.alexey.quizappmvvm.utils.TOTAL_QUESTIONS
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 
 class QuizViewModel(private val repository: QuestionRepository) : ViewModel() {
@@ -28,8 +32,6 @@ class QuizViewModel(private val repository: QuestionRepository) : ViewModel() {
     private val _userAnswer = MutableStateFlow<Int?>(null)
     val userAnswer: StateFlow<Int?> = _userAnswer
 
-
-    // Dynamically load questions based on quiz type
     fun loadQuestions(quizType: String) {
         viewModelScope.launch {
             val randomQuestions = when (quizType) {
@@ -45,7 +47,7 @@ class QuizViewModel(private val repository: QuestionRepository) : ViewModel() {
     }
 
     fun selectAnswer(selectedOption: Int) {
-        if (_userAnswer.value != null) return  // Prevent multiple selections
+        if (_userAnswer.value != null) return
 
         val currentQuestion = _questions.value.getOrNull(_currentQuestionIndex.value)
         _userAnswer.value = selectedOption

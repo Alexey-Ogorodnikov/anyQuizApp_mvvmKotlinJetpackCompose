@@ -42,4 +42,10 @@ class QuestionRepository(private val questionDao: QuestionDao) {
             allQuestions.shuffled()
         }
     }
+
+    suspend fun replaceQuestions(questions: List<Question>) {
+        withContext(Dispatchers.IO) {
+            questionDao.insertQuestions(questions)
+        }
+    }
 }
