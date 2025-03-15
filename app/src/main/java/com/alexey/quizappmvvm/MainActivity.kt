@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
             val dao = database.questionDao()
             //if (dao.getAllQuestions().isEmpty()) {
                 // Read questions from the CSV file
-                var filename = "questions_formated.csv"
+                var filename = "questions.csv"
                 val questionsFromCsv: List<Question> = readQuestionsFromCsv(applicationContext, filename)
                 // Insert the questions into the database
                 dao.insertQuestions(questionsFromCsv)
