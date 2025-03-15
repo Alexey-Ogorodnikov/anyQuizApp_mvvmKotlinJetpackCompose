@@ -3,34 +3,36 @@ package com.alexey.quizappmvvm.utils
 import android.content.Context
 import android.net.Uri
 import com.alexey.quizappmvvm.data.model.Question
+import com.opencsv.CSVReader
 import java.io.BufferedReader
 import java.io.InputStreamReader
+
 
 fun readQuestionsFromCsv(context: Context, filename: String): List<Question> {
     val questions = mutableListOf<Question>()
     try {
-        // Open the CSV file from the assets folder
         val inputStream = context.assets.open(filename)
-        BufferedReader(InputStreamReader(inputStream)).use { reader ->
-            // Skip the header row
-            reader.readLine()
-            reader.forEachLine { line ->
-                // Split the line by comma. Adjust if your CSV uses a different separator.
-                val tokens = line.split(",")
-                if (tokens.size >= 7) {
-                    val question = Question(
-                        id = tokens[0].toIntOrNull() ?: 0,
-                        questionText = tokens[1].replace("#^",","),
-                        option1 = tokens[2].replace("#^",","),
-                        option2 = tokens[3].replace("#^",","),
-                        option3 = tokens[4].replace("#^",","),
-                        correctOption = tokens[5].toIntOrNull() ?: 1,
-                        explanation = tokens[6].replace("#^",",")
-                    )
-                    questions.add(question)
-                }
+        val reader = CSVReader(InputStreamReader(inputStream))
+
+        // Пропустить заголовок
+        reader.readNext()
+
+        var line: Array<String>?
+        while (reader.readNext().also { line = it } != null) {
+            if (line!!.size >= 6) {
+                val question = Question(
+                    id = line!![0].toIntOrNull() ?: 0,
+                    questionText = line!![1],
+                    option1 = line!![2],
+                    option2 = line!![3],
+                    option3 = line!![4],
+                    correctOption = line!![5].toIntOrNull() ?: 1,
+                    explanation = if (line!!.size > 6) line!![6] else ""
+                )
+                questions.add(question)
             }
         }
+        reader.close()
     } catch (e: Exception) {
         e.printStackTrace()
     }
@@ -40,26 +42,29 @@ fun readQuestionsFromCsv(context: Context, filename: String): List<Question> {
 fun readQuestionsFromCsv(context: Context, uri: Uri): List<Question> {
     val questions = mutableListOf<Question>()
     try {
-        // Open input stream from the provided Uri
+        // Открываем поток данных из URI
         context.contentResolver.openInputStream(uri)?.use { inputStream ->
-            BufferedReader(InputStreamReader(inputStream)).use { reader ->
-                reader.readLine() // Skip header row
-                reader.forEachLine { line ->
-                    val tokens = line.split(",")
-                    if (tokens.size >= 7) {
-                        val question = Question(
-                            id = tokens[0].toIntOrNull() ?: 0,
-                            questionText = tokens[1].replace("#^", ","),
-                            option1 = tokens[2].replace("#^", ","),
-                            option2 = tokens[3].replace("#^", ","),
-                            option3 = tokens[4].replace("#^", ","),
-                            correctOption = tokens[5].toIntOrNull() ?: 1,
-                            explanation = tokens[6].replace("#^", ",")
-                        )
-                        questions.add(question)
-                    }
+            val reader = CSVReader(InputStreamReader(inputStream))
+
+            // Пропустить заголовок
+            reader.readNext()
+
+            var line: Array<String>?
+            while (reader.readNext().also { line = it } != null) {
+                if (line!!.size >= 6) {
+                    val question = Question(
+                        id = line!![0].toIntOrNull() ?: 0,
+                        questionText = line!![1],
+                        option1 = line!![2],
+                        option2 = line!![3],
+                        option3 = line!![4],
+                        correctOption = line!![5].toIntOrNull() ?: 1,
+                        explanation = if (line!!.size > 6) line!![6] else ""
+                    )
+                    questions.add(question)
                 }
             }
+            reader.close()
         }
     } catch (e: Exception) {
         e.printStackTrace()
