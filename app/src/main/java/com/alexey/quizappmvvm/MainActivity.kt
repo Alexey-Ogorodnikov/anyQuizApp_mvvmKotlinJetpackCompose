@@ -6,6 +6,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.room.Room
 import com.alexey.quizappmvvm.data.db.AppDatabase
 import com.alexey.quizappmvvm.data.model.Question
@@ -26,35 +30,37 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // State to be passed to Composables
+        val csvTitleState = mutableStateOf<String?>(null)
+
         // Initialize Room database.
         database = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java,
             "quiz_app_database"
         )
-        .fallbackToDestructiveMigration()
-        .build()
+            .fallbackToDestructiveMigration()
+            .build()
+
+        repository = QuestionRepository(database.questionDao())
 
         // Prefill the database from CSV if it's empty.
         CoroutineScope(Dispatchers.IO).launch {
             val dao = database.questionDao()
-            //if (dao.getAllQuestions().isEmpty()) {
-                // Read questions from the CSV file
-                var filename = "questions.csv"
-                val questionsFromCsv: List<Question> = readQuestionsFromCsv(applicationContext, filename)
-                // Insert the questions into the database
-                dao.insertQuestions(questionsFromCsv)
-            //}
+            val filename = "questions.csv"
+            val result = readQuestionsFromCsv(applicationContext, filename)
+            dao.insertQuestions(result.questions)
+            csvTitleState.value = result.title ?: "Untitled Quiz"
         }
 
-
-        // Initialize the repository using the DAO from the database.
-        repository = QuestionRepository(database.questionDao())
-
+        // Elegant single call to setContent
         setContent {
             QuizAppMVVMTheme {
                 Surface(color = MaterialTheme.colorScheme.background) {
-                    AppNavHost(repository = repository)
+                    AppNavHost(
+                        repository = repository,
+                        initialCsvTitle = csvTitleState.value
+                    )
                 }
             }
         }

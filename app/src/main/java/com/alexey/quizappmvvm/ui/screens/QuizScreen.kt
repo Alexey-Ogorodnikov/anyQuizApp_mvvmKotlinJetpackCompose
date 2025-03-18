@@ -6,9 +6,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.alexey.quizappmvvm.R
 import com.alexey.quizappmvvm.navigation.NavRoutes
 import com.alexey.quizappmvvm.ui.viewmodel.QuizViewModel
@@ -49,24 +52,18 @@ fun QuizScreen(
 
     val currentQuestion = questions[currentIndexState.value]
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(id = R.string.question_counter, currentIndexState.value + 1, questions.size
-                        )
-                    )
-                }
-            )
-        }
-    ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
-                .padding(16.dp)
+                .padding(16.dp),
+
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Text(
+                text = stringResource(id = R.string.question_counter, currentIndexState.value + 1, questions.size),
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
             Text(
                 text = currentQuestion.questionText,
                 style = MaterialTheme.typography.titleMedium,
@@ -119,5 +116,39 @@ fun QuizScreen(
                 }
             }
         }
+    }
+
+
+
+@Preview(showBackground = true)
+@Composable
+fun QuizScreenPreview() {
+    // mock ViewModel
+    val fakeViewModel = object : QuizViewModel(null) {
+        init {
+            _questions.value = listOf(
+                com.alexey.quizappmvvm.data.model.Question(
+                    id = 1,
+                    questionText = "What is the capital of France?",
+                    option1 = "Paris",
+                    option2 = "London",
+                    option3 = "Berlin",
+                    correctOption = 1,
+                    explanation = "Paris is the capital of France."
+                )
+            )
+            _userAnswer.value = null
+        }
+    }
+
+    // Мокаем NavController для превью
+    val fakeNavController = rememberNavController()
+
+    MaterialTheme {
+        QuizScreen(
+            viewModel = fakeViewModel,
+            navController = fakeNavController,
+            onQuizEnd = {}
+        )
     }
 }

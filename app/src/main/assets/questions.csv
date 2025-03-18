@@ -1,101 +1,102 @@
+# Top 100 Timeless Quotes
 id,questionText,option1,option2,option3,correctOption,explanation
-1,"Who said: 'Only the dead have seen the end of war'?",Plato,Confucius,Aristotle,1,"This quote is attributed to Plato."
-2,"Who is credited with: 'The pen is mightier than the sword'?",Benjamin Franklin,Edward Bulwer-Lytton,William Shakespeare,2,"Edward Bulwer-Lytton coined this phrase."
-3,"Who said: 'Insanity is doing the same thing over and over and expecting different results'?",Albert Einstein,Thomas Edison,Nikola Tesla,1,"Albert Einstein is commonly credited with this quote."
-4,"Who said: 'Mathematics is the queen of sciences'?",Isaac Newton,Carl Gauss,Leonhard Euler,2,"Carl Gauss referred to mathematics as the queen of sciences."
-5,"Who stated: 'A doctor is someone who gets paid for talking while nature cures the disease'?",Hippocrates,Paracelsus,Voltaire,3,"Voltaire is known for this humorous remark."
-6,"Who said: 'History repeats itself, first as tragedy, second as farce'?",Karl Marx,Friedrich Nietzsche,Sigmund Freud,1,"Karl Marx is credited with this statement."
-7,"Who famously said: 'I think, therefore I am'?",Friedrich Nietzsche,René Descartes,Immanuel Kant,2,"René Descartes formulated this philosophical statement."
-8,"Who said: 'Intelligence is the ability to adapt to change'?",Stephen Hawking,Charles Darwin,Albert Einstein,1,"Stephen Hawking stated this."
-9,"Who wrote: 'God is dead'?",Arthur Schopenhauer,Friedrich Nietzsche,Jean-Paul Sartre,2,"Friedrich Nietzsche famously proclaimed this."
-10,"Who said: 'An unexamined life is not worth living'?",Socrates,Plato,Aristotle,1,"Socrates made this statement."
-11,"Who said: 'Time is money'?",Benjamin Franklin,Thomas Jefferson,George Washington,1,"Benjamin Franklin is known for popularizing this phrase."
-12,"Who is credited with: 'Give me liberty, or give me death'?",Thomas Paine,Patrick Henry,Samuel Adams,2,"Patrick Henry made this declaration."
-13,"Who wrote: 'We hold these truths to be self-evident, that all men are created equal'?",Thomas Jefferson,Benjamin Franklin,George Washington,1,"Thomas Jefferson wrote these words in the Declaration of Independence."
-14,"Who said: 'The only thing we have to fear is fear itself'?",Franklin D. Roosevelt,Theodore Roosevelt,Winston Churchill,1,"This quote comes from Franklin D. Roosevelt's inaugural address."
-15,"Who famously said: 'I have a dream'?",Martin Luther King Jr.,Malcolm X,John F. Kennedy,1,"Martin Luther King Jr. delivered this iconic speech."
-16,"Who is known for the phrase: 'Speak softly and carry a big stick'?",Theodore Roosevelt,Franklin D. Roosevelt,Woodrow Wilson,1,"Theodore Roosevelt popularized this saying."
-17,"Who wrote: 'Give me six hours to chop down a tree and I will spend the first four sharpening the axe'?",Abraham Lincoln,George Washington,Ulysses S. Grant,1,"This quote is often attributed to Abraham Lincoln."
-18,"Who said: 'An investment in knowledge pays the best interest'?",Benjamin Franklin,Thomas Edison,Andrew Carnegie,1,"Benjamin Franklin is credited with this quote."
-19,"Who stated: 'Do what you can, with what you have, where you are'?",Theodore Roosevelt,Franklin D. Roosevelt,Abraham Lincoln,1,"This quote is attributed to Theodore Roosevelt."
-20,"Who said: 'Happiness depends upon ourselves'?",Aristotle,Plato,Socrates,1,"Aristotle is credited with this statement."
-21,"Who wrote: 'Life is what happens when you're busy making other plans'?",John Lennon,Bob Dylan,Paul McCartney,1,"John Lennon wrote this in his song 'Beautiful Boy.'"
-22,"Who said: 'I have not failed. I've just found 10,000 ways that won't work'?",Thomas Edison,Nikola Tesla,Benjamin Franklin,1,"Thomas Edison famously said this about his many attempts to create a successful light bulb."
-23,"Who is credited with: 'Success is not final, failure is not fatal: it is the courage to continue that counts'?",Winston Churchill,Theodore Roosevelt,Franklin D. Roosevelt,1,"Winston Churchill made this observation."
-24,"Who said: 'To love oneself is the beginning of a lifelong romance'?",Oscar Wilde,George Bernard Shaw,William Shakespeare,1,"Oscar Wilde is known for this witty remark."
-25,"Who stated: 'Do not go where the path may lead, go instead where there is no path and leave a trail'?",Ralph Waldo Emerson,Henry David Thoreau,Walt Whitman,1,"This quote is attributed to Ralph Waldo Emerson."
-26,"Who said: 'What you get by achieving your goals is not as important as what you become by achieving your goals'?",Zig Ziglar,Dale Carnegie,Jim Rohn,1,"This quote is commonly attributed to Zig Ziglar."
-27,"Who is credited with: 'Injustice anywhere is a threat to justice everywhere'?",Martin Luther King Jr.,Nelson Mandela,Mahatma Gandhi,1,"Martin Luther King Jr. wrote this in his 'Letter from Birmingham Jail.'"
-28,"Who said: 'Not everything that is faced can be changed, but nothing can be changed until it is faced'?",James Baldwin,Langston Hughes,Frederick Douglass,1,"James Baldwin is credited with this statement."
-29,"Who stated: 'Education is the most powerful weapon which you can use to change the world'?",Nelson Mandela,Martin Luther King Jr.,Malala Yousafzai,1,"Nelson Mandela made this famous observation."
-30,"Who said: 'A journey of a thousand miles begins with a single step'?",Lao Tzu,Confucius,Buddha,1,"Lao Tzu is credited with this ancient proverb."
-31,"Who wrote: 'The best way to predict the future is to create it'?",Peter Drucker,Elon Musk,Steve Jobs,1,"Peter Drucker is known for this forward-thinking quote."
-32,"Who said: 'Life is really simple, but we insist on making it complicated'?",Confucius,Lao Tzu,Buddha,1,"Confucius made this observation about life."
-33,"Who is credited with: 'In the middle of every difficulty lies opportunity'?",Albert Einstein,Thomas Edison,Nikola Tesla,1,"Albert Einstein is often attributed with this quote."
-34,"Who said: 'Peace begins with a smile'?",Mother Teresa,Princess Diana,Eleanor Roosevelt,1,"Mother Teresa is known for this simple yet profound statement."
-35,"Who wrote: 'We are what we repeatedly do. Excellence, then, is not an act, but a habit'?",Aristotle,Plato,Socrates,1,"Aristotle made this observation about human nature."
-36,"Who said: 'An eye for an eye will leave the whole world blind'?",Mahatma Gandhi,Martin Luther King Jr.,Nelson Mandela,1,"Mahatma Gandhi is often credited with this saying."
-37,"Who stated: 'To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment'?",Ralph Waldo Emerson,Henry David Thoreau,Walt Whitman,1,"Ralph Waldo Emerson is credited with this thought-provoking quote."
-38,"Who said: 'Do unto others as you would have them do unto you'?",Jesus Christ,Buddha,Confucius,1,"This is known as the Golden Rule, often attributed to Jesus Christ."
-39,"Who is known for the phrase: 'All men are created equal'?",Thomas Jefferson,Benjamin Franklin,George Washington,1,"Thomas Jefferson wrote these words in the Declaration of Independence."
-40,"Who stated: 'The best revenge is massive success'?",Frank Sinatra,Dean Martin,Sammy Davis Jr.,1,"Frank Sinatra is credited with this quote."
-41,"Who said: 'If you tell the truth, you don't have to remember anything'?",Mark Twain,Oscar Wilde,George Bernard Shaw,1,"Mark Twain made this famous statement."
-42,"Who wrote: 'Without music, life would be a mistake'?",Friedrich Nietzsche,Arthur Schopenhauer,Jean-Paul Sartre,1,"Friedrich Nietzsche made this observation."
-43,"Who stated: 'Do not wait; the time will never be 'just right''?",Napoleon Hill,Andrew Carnegie,Dale Carnegie,1,"Napoleon Hill is known for this motivational statement."
-44,"Who said: 'Courage is resistance to fear, mastery of fear—not absence of fear'?",Mark Twain,Theodore Roosevelt,Winston Churchill,1,"Mark Twain is often credited with this quote about courage."
-45,"Who said: 'The weak can never forgive. Forgiveness is the attribute of the strong'?",Mahatma Gandhi,Martin Luther King Jr.,Nelson Mandela,1,"Mahatma Gandhi is credited with this profound statement."
-46,"Who is credited with: 'Not all those who wander are lost'?",J.R.R. Tolkien,C.S. Lewis,George R.R. Martin,1,"J.R.R. Tolkien wrote this in 'The Lord of the Rings.'"
-47,"Who said: 'Success usually comes to those who are too busy to be looking for it'?",Henry David Thoreau,Ralph Waldo Emerson,Andrew Carnegie,1,"This quote is often attributed to Henry David Thoreau."
-48,"Who wrote: 'Don’t cry because it’s over, smile because it happened'?",Dr. Seuss,Ralph Waldo Emerson,Mark Twain,1,"Dr. Seuss is credited with this cheerful remark."
-49,"Who said: 'It is better to be feared than loved, if you cannot be both'?",Niccolò Machiavelli,Thomas Hobbes,John Locke,1,"This comes from Machiavelli's 'The Prince.'"
-50,"Who stated: 'A room without books is like a body without a soul'?",Marcus Tullius Cicero,Seneca,Ovid,1,"Cicero made this timeless observation."
-51,"Who said: 'Success is not final, failure is not fatal: it is the courage to continue that counts'?",Winston Churchill,Franklin D. Roosevelt,Theodore Roosevelt,1,"Winston Churchill is credited with this statement."
-52,"Who stated: 'Time is the wisest counselor of all'?",Pericles,Socrates,Plato,1,"This is attributed to the ancient Greek statesman Pericles."
-53,"Who wrote: 'The journey of a thousand miles begins with one step'?",Lao Tzu,Confucius,Buddha,1,"Lao Tzu is credited with this ancient proverb."
-54,"Who said: 'If you want to go fast, go alone. If you want to go far, go together'?",African Proverb,Confucius,Lao Tzu,1,"This is an African proverb emphasizing teamwork."
-55,"Who said: 'I never teach my pupils, I only attempt to provide the conditions in which they can learn'?",Albert Einstein,John Dewey,Confucius,1,"Einstein is credited with this teaching philosophy."
-56,"Who wrote: 'The unexamined life is not worth living'?",Socrates,Plato,Aristotle,1,"This is attributed to Socrates."
-57,"Who stated: 'It does not matter how slowly you go as long as you do not stop'?",Confucius,Lao Tzu,Buddha,1,"Confucius is credited with this observation."
-58,"Who said: 'Education is the most powerful weapon which you can use to change the world'?",Nelson Mandela,Mahatma Gandhi,Martin Luther King Jr.,1,"Nelson Mandela made this statement about education."
-59,"Who said: 'An investment in knowledge pays the best interest'?",Benjamin Franklin,Andrew Carnegie,John Dewey,1,"This is attributed to Benjamin Franklin."
-60,"Who stated: 'Do what you can, with what you have, where you are'?",Theodore Roosevelt,Franklin D. Roosevelt,Harry Truman,1,"This is attributed to Theodore Roosevelt."
-61,"Who wrote: 'Happiness depends upon ourselves'?",Aristotle,Plato,Socrates,1,"This is attributed to Aristotle."
-62,"Who said: 'Life is really simple, but we insist on making it complicated'?",Confucius,Lao Tzu,Buddha,1,"This is attributed to Confucius."
-63,"Who said: 'He who opens a school door, closes a prison'?",Victor Hugo,John Dewey,Plato,1,"This is attributed to Victor Hugo."
-64,"Who wrote: 'Justice is truth in action'?",Benjamin Disraeli,Plato,Aristotle,1,"This is attributed to Benjamin Disraeli."
-65,"Who stated: 'Peace cannot be kept by force; it can only be achieved by understanding'?",Albert Einstein,Mahatma Gandhi,Martin Luther King Jr.,1,"This is attributed to Albert Einstein."
-66,"Who said: 'Not everything that is faced can be changed, but nothing can be changed until it is faced'?",James Baldwin,Langston Hughes,Frederick Douglass,1,"This is attributed to James Baldwin."
-67,"Who wrote: 'To know, is to know that you know nothing. That is the meaning of true knowledge'?",Socrates,Plato,Aristotle,1,"This is attributed to Socrates."
-68,"Who said: 'Do not go where the path may lead, go instead where there is no path and leave a trail'?",Ralph Waldo Emerson,Henry David Thoreau,Walt Whitman,1,"This is attributed to Ralph Waldo Emerson."
-69,"Who stated: 'Success usually comes to those who are too busy to be looking for it'?",Henry David Thoreau,Andrew Carnegie,Ralph Waldo Emerson,1,"This is attributed to Henry David Thoreau."
-70,"Who said: 'Courage is resistance to fear, mastery of fear—not absence of fear'?",Mark Twain,Winston Churchill,Theodore Roosevelt,1,"This is attributed to Mark Twain."
-71,"Who stated: 'You miss 100% of the shots you don't take'?",Wayne Gretzky,Michael Jordan,Joe Namath,1,"This is attributed to Wayne Gretzky."
-72,"Who wrote: 'The only thing we have to fear is fear itself'?",Franklin D. Roosevelt,Winston Churchill,John F. Kennedy,1,"This is attributed to Franklin D. Roosevelt."
-73,"Who said: 'I have a dream'?",Martin Luther King Jr.,Malcolm X,John F. Kennedy,1,"This is attributed to Martin Luther King Jr."
-74,"Who stated: 'Time is the wisest counselor of all'?",Pericles,Socrates,Plato,1,"This is attributed to Pericles."
-75,"Who said: 'The only thing that interferes with my learning is my education'?",Albert Einstein,Mark Twain,Bertrand Russell,1,"This is attributed to Albert Einstein."
-76,"Who wrote: 'Injustice anywhere is a threat to justice everywhere'?",Martin Luther King Jr.,Malcolm X,Frederick Douglass,1,"This is attributed to Martin Luther King Jr."
-77,"Who said: 'Education is the most powerful weapon which you can use to change the world'?",Nelson Mandela,Martin Luther King Jr.,Mahatma Gandhi,1,"This is attributed to Nelson Mandela."
-78,"Who wrote: 'He who opens a school door, closes a prison'?",Victor Hugo,John Dewey,Plato,1,"This is attributed to Victor Hugo."
-79,"Who said: 'Life is really simple, but we insist on making it complicated'?",Confucius,Lao Tzu,Buddha,1,"This is attributed to Confucius."
-80,"Who wrote: 'A room without books is like a body without a soul'?",Marcus Tullius Cicero,Seneca,Ovid,1,"This is attributed to Cicero."
-81,"Who said: 'Do not wait; the time will never be just right'?",Napoleon Hill,Andrew Carnegie,John Dewey,1,"This is attributed to Napoleon Hill."
-82,"Who stated: 'Time is money'?",Benjamin Franklin,Andrew Carnegie,John Dewey,1,"This is attributed to Benjamin Franklin."
-83,"Who wrote: 'The journey of a thousand miles begins with one step'?",Lao Tzu,Confucius,Buddha,1,"This is attributed to Lao Tzu."
-84,"Who said: 'An investment in knowledge pays the best interest'?",Benjamin Franklin,Andrew Carnegie,John Dewey,1,"This is attributed to Benjamin Franklin."
-85,"Who stated: 'The only thing we have to fear is fear itself'?",Franklin D. Roosevelt,Winston Churchill,John F. Kennedy,1,"This is attributed to Franklin D. Roosevelt."
-86,"Who wrote: 'The only thing that interferes with my learning is my education'?",Albert Einstein,Mark Twain,Bertrand Russell,1,"This is attributed to Albert Einstein."
-87,"Who said: 'Success usually comes to those who are too busy to be looking for it'?",Henry David Thoreau,Ralph Waldo Emerson,Andrew Carnegie,1,"This is attributed to Henry David Thoreau."
-88,"Who stated: 'Not everything that is faced can be changed, but nothing can be changed until it is faced'?",James Baldwin,Langston Hughes,Frederick Douglass,1,"This is attributed to James Baldwin."
-89,"Who wrote: 'Education is the most powerful weapon which you can use to change the world'?",Nelson Mandela,Martin Luther King Jr.,Mahatma Gandhi,1,"This is attributed to Nelson Mandela."
-90,"Who said: 'A journey of a thousand miles begins with a single step'?",Lao Tzu,Confucius,Buddha,1,"This is attributed to Lao Tzu."
-91,"Who stated: 'Injustice anywhere is a threat to justice everywhere'?",Martin Luther King Jr.,Malcolm X,Frederick Douglass,1,"This is attributed to Martin Luther King Jr."
-92,"Who said: 'Life is really simple, but we insist on making it complicated'?",Confucius,Lao Tzu,Buddha,1,"This is attributed to Confucius."
-93,"Who wrote: 'A room without books is like a body without a soul'?",Marcus Tullius Cicero,Seneca,Ovid,1,"This is attributed to Cicero."
-94,"Who stated: 'He who opens a school door, closes a prison'?",Victor Hugo,John Dewey,Plato,1,"This is attributed to Victor Hugo."
-95,"Who said: 'Not everything that is faced can be changed, but nothing can be changed until it is faced'?",James Baldwin,Langston Hughes,Frederick Douglass,1,"This is attributed to James Baldwin."
-96,"Who wrote: 'An investment in knowledge pays the best interest'?",Benjamin Franklin,Andrew Carnegie,John Dewey,1,"This is attributed to Benjamin Franklin."
-97,"Who stated: 'Success usually comes to those who are too busy to be looking for it'?",Henry David Thoreau,Ralph Waldo Emerson,Andrew Carnegie,1,"This is attributed to Henry David Thoreau."
-98,"Who said: 'Do not wait; the time will never be just right'?",Napoleon Hill,Andrew Carnegie,John Dewey,1,"This is attributed to Napoleon Hill."
-99,"Who wrote: 'The best way to predict the future is to create it'?",Peter Drucker,Elon Musk,Steve Jobs,1,"This is attributed to Peter Drucker."
-100,"Who said: 'If you tell the truth, you don't have to remember anything'?",Mark Twain,Oscar Wilde,George Bernard Shaw,1,"This is attributed to Mark Twain."
+1,Be the change that you wish to see in the world.,Confucius,Sun Tzu,Mahatma Gandhi,3,This quote belongs to Mahatma Gandhi.
+2,The only thing we have to fear is fear itself.,Seneca,Franklin D. Roosevelt,Immanuel Kant,2,This quote belongs to Franklin D. Roosevelt.
+3,In the middle of difficulty lies opportunity.,Albert Einstein,Seneca,Immanuel Kant,1,This quote belongs to Albert Einstein.
+4,"Do not go where the path may lead, go instead where there is no path and leave a trail.",Seneca,Epictetus,Ralph Waldo Emerson,3,This quote belongs to Ralph Waldo Emerson.
+5,The journey of a thousand miles begins with a single step.,Socrates,Sun Tzu,Lao Tzu,3,This quote belongs to Lao Tzu.
+6,It always seems impossible until it’s done.,Nelson Mandela,Immanuel Kant,Sun Tzu,1,This quote belongs to Nelson Mandela.
+7,He who has a why to live can bear almost any how.,Blaise Pascal,Marcus Aurelius,Friedrich Nietzsche,3,This quote belongs to Friedrich Nietzsche.
+8,"What we think, we become.",Buddha,Marcus Aurelius,Socrates,1,This quote belongs to Buddha.
+9,"Fall seven times, stand up eight.",Immanuel Kant,Plato,Japanese Proverb,3,This quote belongs to Japanese Proverb.
+10,Well done is better than well said.,Confucius,Benjamin Franklin,Sun Tzu,2,This quote belongs to Benjamin Franklin.
+11,An unexamined life is not worth living.,Marcus Aurelius,Immanuel Kant,Socrates,3,This quote belongs to Socrates.
+12,Life is what happens when you're busy making other plans.,Sun Tzu,Epictetus,John Lennon,3,This quote belongs to John Lennon.
+13,"Success is not final, failure is not fatal: It is the courage to continue that counts.",Blaise Pascal,Immanuel Kant,Winston Churchill,3,This quote belongs to Winston Churchill.
+14,Happiness depends upon ourselves.,Aristotle,Lao Tzu,Blaise Pascal,1,This quote belongs to Aristotle.
+15,"I think, therefore I am.",Socrates,Carl Jung,René Descartes,3,This quote belongs to René Descartes.
+16,The only true wisdom is in knowing you know nothing.,Socrates,Plato,Lao Tzu,1,This quote belongs to Socrates.
+17,That which does not kill us makes us stronger.,Immanuel Kant,Sun Tzu,Friedrich Nietzsche,3,This quote belongs to Friedrich Nietzsche.
+18,The best way to predict the future is to create it.,Marcus Aurelius,Sun Tzu,Peter Drucker,3,This quote belongs to Peter Drucker.
+19,Knowledge is power.,Epictetus,Francis Bacon,Seneca,2,This quote belongs to Francis Bacon.
+20,A person who never made a mistake never tried anything new.,Immanuel Kant,Albert Einstein,Sun Tzu,2,This quote belongs to Albert Einstein.
+21,"Don’t cry because it’s over, smile because it happened.",Dr. Seuss,Carl Jung,Epictetus,1,This quote belongs to Dr. Seuss.
+22,Act as if what you do makes a difference. It does.,Sun Tzu,William James,Carl Jung,2,This quote belongs to William James.
+23,You miss 100% of the shots you don’t take.,Socrates,Wayne Gretzky,Confucius,2,This quote belongs to Wayne Gretzky.
+24,To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.,Socrates,Immanuel Kant,Ralph Waldo Emerson,3,This quote belongs to Ralph Waldo Emerson.
+25,"If you want to go fast, go alone. If you want to go far, go together.",African Proverb,Marcus Aurelius,Carl Jung,1,This quote belongs to African Proverb.
+26,It does not matter how slowly you go as long as you do not stop.,Immanuel Kant,Sun Tzu,Confucius,3,This quote belongs to Confucius.
+27,Dream big and dare to fail.,Norman Vaughan,Carl Jung,Epictetus,1,This quote belongs to Norman Vaughan.
+28,"Strive not to be a success, but rather to be of value.",Confucius,Albert Einstein,Lao Tzu,2,This quote belongs to Albert Einstein.
+29,Turn your wounds into wisdom.,Oprah Winfrey,Sun Tzu,Plato,1,This quote belongs to Oprah Winfrey.
+30,Believe you can and you're halfway there.,Seneca,Theodore Roosevelt,Confucius,2,This quote belongs to Theodore Roosevelt.
+31,Be yourself; everyone else is already taken.,Plato,Oscar Wilde,Confucius,2,This quote belongs to Oscar Wilde.
+32,Peace begins with a smile.,Lao Tzu,Immanuel Kant,Mother Teresa,3,This quote belongs to Mother Teresa.
+33,The best revenge is massive success.,Immanuel Kant,Plato,Frank Sinatra,3,This quote belongs to Frank Sinatra.
+34,"If opportunity doesn’t knock, build a door.",Milton Berle,Marcus Aurelius,Plato,1,This quote belongs to Milton Berle.
+35,Doubt kills more dreams than failure ever will.,Suzy Kassem,Carl Jung,Lao Tzu,1,This quote belongs to Suzy Kassem.
+36,"A journey is best measured in friends, not in miles.",Sun Tzu,Tim Cahill,Plato,2,This quote belongs to Tim Cahill.
+37,Don’t wait. The time will never be just right.,Confucius,Napoleon Hill,Immanuel Kant,2,This quote belongs to Napoleon Hill.
+38,Fortune favors the bold.,Latin Proverb,Plato,Confucius,1,This quote belongs to Latin Proverb.
+39,"We are what we repeatedly do. Excellence, then, is not an act, but a habit.",Confucius,Plato,Aristotle,3,This quote belongs to Aristotle.
+40,Knowing yourself is the beginning of all wisdom.,Plato,Aristotle,Lao Tzu,2,This quote belongs to Aristotle.
+41,Life shrinks or expands in proportion to one's courage.,Anaïs Nin,Lao Tzu,Immanuel Kant,1,This quote belongs to Anaïs Nin.
+42,Success usually comes to those who are too busy to be looking for it.,Henry David Thoreau,Epictetus,Socrates,1,This quote belongs to Henry David Thoreau.
+43,"When you reach the end of your rope, tie a knot and hang on.",Immanuel Kant,Franklin D. Roosevelt,Plato,2,This quote belongs to Franklin D. Roosevelt.
+44,Everything you’ve ever wanted is on the other side of fear.,George Addair,Lao Tzu,Carl Jung,1,This quote belongs to George Addair.
+45,Silence is a true friend who never betrays.,Seneca,Marcus Aurelius,Confucius,3,This quote belongs to Confucius.
+46,Don't watch the clock; do what it does. Keep going.,Blaise Pascal,Confucius,Sam Levenson,3,This quote belongs to Sam Levenson.
+47,"Work hard in silence, let your success be your noise.",Frank Ocean,Blaise Pascal,Marcus Aurelius,1,This quote belongs to Frank Ocean.
+48,"Stay hungry, stay foolish.",Steve Jobs,Sun Tzu,Blaise Pascal,1,This quote belongs to Steve Jobs.
+49,"If you tell the truth, you don't have to remember anything.",Confucius,Socrates,Mark Twain,3,This quote belongs to Mark Twain.
+50,Success is how high you bounce when you hit bottom.,Lao Tzu,George S. Patton,Blaise Pascal,2,This quote belongs to George S. Patton.
+51,"Life is really simple, but we insist on making it complicated.",Marcus Aurelius,Confucius,Sun Tzu,2,This quote belongs to Confucius.
+52,Honesty is the first chapter in the book of wisdom.,Thomas Jefferson,Seneca,Confucius,1,This quote belongs to Thomas Jefferson.
+53,Do one thing every day that scares you.,Confucius,Sun Tzu,Eleanor Roosevelt,3,This quote belongs to Eleanor Roosevelt.
+54,Don’t gain the world and lose your soul.,Sun Tzu,Blaise Pascal,Bob Marley,3,This quote belongs to Bob Marley.
+55,All limitations are self-imposed.,Carl Jung,Oliver Wendell Holmes,Marcus Aurelius,2,This quote belongs to Oliver Wendell Holmes.
+56,You must do the things you think you cannot do.,Eleanor Roosevelt,Blaise Pascal,Marcus Aurelius,1,This quote belongs to Eleanor Roosevelt.
+57,A wise man will make more opportunities than he finds.,Seneca,Epictetus,Francis Bacon,3,This quote belongs to Francis Bacon.
+58,"No pressure, no diamonds.",Thomas Carlyle,Sun Tzu,Lao Tzu,1,This quote belongs to Thomas Carlyle.
+59,Hustle beats talent when talent doesn’t hustle.,Carl Jung,Ross Simmonds,Lao Tzu,2,This quote belongs to Ross Simmonds.
+60,"Your time is limited, so don’t waste it living someone else’s life.",Steve Jobs,Sun Tzu,Plato,1,This quote belongs to Steve Jobs.
+61,Do small things with great love.,Marcus Aurelius,Mother Teresa,Lao Tzu,2,This quote belongs to Mother Teresa.
+62,"Courage is resistance to fear, mastery of fear – not absence of fear.",Mark Twain,Marcus Aurelius,Epictetus,1,This quote belongs to Mark Twain.
+63,Fall in love with the process and the results will come.,Eric Thomas,Carl Jung,Seneca,1,This quote belongs to Eric Thomas.
+64,"Don’t limit your challenges, challenge your limits.",Carl Jung,Anonymous,Confucius,2,This quote belongs to Anonymous.
+65,"Patience is bitter, but its fruit is sweet.",Carl Jung,Jean-Jacques Rousseau,Epictetus,2,This quote belongs to Jean-Jacques Rousseau.
+66,"Little by little, one travels far.",Lao Tzu,J.R.R. Tolkien,Carl Jung,2,This quote belongs to J.R.R. Tolkien.
+67,Failure is another stepping stone to greatness.,Oprah Winfrey,Lao Tzu,Confucius,1,This quote belongs to Oprah Winfrey.
+68,"No rain, no flowers.",Proverb,Carl Jung,Blaise Pascal,1,This quote belongs to Proverb.
+69,Live as if you were to die tomorrow. Learn as if you were to live forever.,Confucius,Epictetus,Mahatma Gandhi,3,This quote belongs to Mahatma Gandhi.
+70,Energy and persistence conquer all things.,Plato,Confucius,Benjamin Franklin,3,This quote belongs to Benjamin Franklin.
+71,"If you’re going through hell, keep going.",Winston Churchill,Blaise Pascal,Epictetus,1,This quote belongs to Winston Churchill.
+72,Effort never betrays you.,Japanese Proverb,Socrates,Plato,1,This quote belongs to Japanese Proverb.
+73,Stay away from those who try to belittle your ambitions.,Mark Twain,Confucius,Epictetus,1,This quote belongs to Mark Twain.
+74,A smooth sea never made a skilled sailor.,Blaise Pascal,Franklin D. Roosevelt,Carl Jung,2,This quote belongs to Franklin D. Roosevelt.
+75,Success is walking from failure to failure with no loss of enthusiasm.,Winston Churchill,Seneca,Plato,1,This quote belongs to Winston Churchill.
+76,Every strike brings me closer to the next home run.,Babe Ruth,Marcus Aurelius,Carl Jung,1,This quote belongs to Babe Ruth.
+77,"You don’t find the happy life, you make it.",Camilla Eyring Kimball,Socrates,Marcus Aurelius,1,This quote belongs to Camilla Eyring Kimball.
+78,Never regret anything that made you smile.,Mark Twain,Epictetus,Lao Tzu,1,This quote belongs to Mark Twain.
+79,Your only limit is your mind.,Anonymous,Lao Tzu,Carl Jung,1,This quote belongs to Anonymous.
+80,"The harder you work, the luckier you get.",Gary Player,Epictetus,Blaise Pascal,1,This quote belongs to Gary Player.
+81,Old ways won’t open new doors.,Marcus Aurelius,Seneca,Anonymous,3,This quote belongs to Anonymous.
+82,"Winners never quit, and quitters never win.",Confucius,Vince Lombardi,Seneca,2,This quote belongs to Vince Lombardi.
+83,Big journeys begin with small steps.,Seneca,Plato,Chinese Proverb,3,This quote belongs to Chinese Proverb.
+84,A champion is defined not by their wins but by how they recover when they fall.,Serena Williams,Seneca,Lao Tzu,1,This quote belongs to Serena Williams.
+85,Nothing will work unless you do.,Sun Tzu,Maya Angelou,Confucius,2,This quote belongs to Maya Angelou.
+86,"Life is short, and it is here to be lived.",Kate Winslet,Epictetus,Immanuel Kant,1,This quote belongs to Kate Winslet.
+87,You are never too old to set another goal or to dream a new dream.,Plato,C.S. Lewis,Immanuel Kant,2,This quote belongs to C.S. Lewis.
+88,Hard work beats talent when talent doesn’t work hard.,Socrates,Tim Notke,Plato,2,This quote belongs to Tim Notke.
+89,Be kind whenever possible. It is always possible.,Immanuel Kant,Dalai Lama,Blaise Pascal,2,This quote belongs to Dalai Lama.
+90,"Without rain, nothing grows. Learn to embrace the storms.",Anonymous,Sun Tzu,Epictetus,1,This quote belongs to Anonymous.
+91,You can if you think you can.,Marcus Aurelius,George Reeves,Socrates,2,This quote belongs to George Reeves.
+92,The way to get started is to quit talking and begin doing.,Blaise Pascal,Walt Disney,Carl Jung,2,This quote belongs to Walt Disney.
+93,The purpose of our lives is to be happy.,Lao Tzu,Dalai Lama,Sun Tzu,2,This quote belongs to Dalai Lama.
+94,"Dream as if you'll live forever, live as if you'll die today.",James Dean,Confucius,Seneca,1,This quote belongs to James Dean.
+95,Discipline is the bridge between goals and accomplishment.,Jim Rohn,Immanuel Kant,Plato,1,This quote belongs to Jim Rohn.
+96,"If not now, when?",Confucius,Hillel the Elder,Plato,2,This quote belongs to Hillel the Elder.
+97,"Live life to the fullest, and focus on the positive.",Matt Cameron,Seneca,Blaise Pascal,1,This quote belongs to Matt Cameron.
+98,"Success is nothing more than a few simple disciplines, practiced every day.",Sun Tzu,Seneca,Jim Rohn,3,This quote belongs to Jim Rohn.
+99,The secret of getting ahead is getting started.,Confucius,Seneca,Mark Twain,3,This quote belongs to Mark Twain.
+100,"Opportunities don't happen, you create them.",Chris Grosser,Blaise Pascal,Confucius,1,This quote belongs to Chris Grosser.
