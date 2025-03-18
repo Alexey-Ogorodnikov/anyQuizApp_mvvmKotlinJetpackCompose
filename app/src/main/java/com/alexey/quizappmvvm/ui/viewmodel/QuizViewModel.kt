@@ -1,18 +1,13 @@
 package com.alexey.quizappmvvm.ui.viewmodel
 
-import android.app.Application
-import android.net.Uri
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alexey.quizappmvvm.data.model.Question
 import com.alexey.quizappmvvm.data.repository.QuestionRepository
-import kotlinx.coroutines.Dispatchers
+import com.alexey.quizappmvvm.utils.QuizTypes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.io.BufferedReader
-import java.io.InputStreamReader
 
 
 class QuizViewModel(private val repository: QuestionRepository) : ViewModel() {
@@ -35,10 +30,10 @@ class QuizViewModel(private val repository: QuestionRepository) : ViewModel() {
     fun loadQuestions(quizType: String) {
         viewModelScope.launch {
             val randomQuestions = when (quizType) {
-                "mobile" -> repository.getMobileQuestions()
-                "devops" -> repository.getDevOpsQuestions()
-                "yandex" -> repository.getYandexQuestions()
-                "nasa" -> repository.getNasaQuestions()
+                QuizTypes.EASY -> repository.getEasyQuestions()
+                QuizTypes.NORMAL -> repository.getNormalQuestions()
+                QuizTypes.HARD -> repository.getHardQuestions()
+                QuizTypes.INSANE -> repository.getInsaneQuestions()
                 else -> emptyList()
             }
             _questions.value = randomQuestions

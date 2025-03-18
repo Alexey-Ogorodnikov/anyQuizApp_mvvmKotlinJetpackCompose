@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">QuizAppMVVM</string>
+
+    <!-- Menu screen  -->
+    <string name="menu_title">Quiz App Menu</string>
+    <string name="welcome_text">Welcome to the Quiz App!</string>
+    <string name="easy_label">EASY : Questions 1–10</string>
+    <string name="normal_label">NORMAL : Questions 1–20</string>
+    <string name="hard_label">HARD : Questions 1–50</string>
+    <string name="insane_label">INSANE! : Questions 1–100</string>
+    <string name="select_csv">Select CSV</string>
+
+    <!-- Quiz screen  -->
+    <string name="question_counter">Question %1$d of %2$d</string>
+    <string name="correct">Correct!</string>
+    <string name="incorrect">Incorrect!</string>
+    <string name="explanation">Explanation: %1$s</string>
+    <string name="next">Next</string>
+
+    <!-- Result screen  -->
+    <string name="quiz_results_title">Quiz Results</string>
+    <string name="quiz_completed">Quiz Completed!</string>
+    <string name="correct_answers">Correct Answers: %1$d</string>
+    <string name="incorrect_answers">Incorrect Answers: %1$d</string>
+    <string name="back_to_menu">Back to Menu</string>
+
 </resources>

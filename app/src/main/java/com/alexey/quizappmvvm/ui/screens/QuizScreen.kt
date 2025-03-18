@@ -1,32 +1,17 @@
 package com.alexey.quizappmvvm.ui.screens
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.alexey.quizappmvvm.R
+import com.alexey.quizappmvvm.navigation.NavRoutes
 import com.alexey.quizappmvvm.ui.viewmodel.QuizViewModel
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,7 +28,7 @@ fun QuizScreen(
     var isLastQuestionAnswered by remember { mutableStateOf(false) }
 
     if (questions.isEmpty()) {
-        // Show loading indicator while questions are being loaded
+        // Loading
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
@@ -56,8 +41,8 @@ fun QuizScreen(
 
     if (currentIndexState.value >= questions.size && !isLastQuestionAnswered) {
         isLastQuestionAnswered = true
-        navController.navigate("result") {
-            popUpTo("menu") { inclusive = true }  // Avoids stacking multiple ResultScreens
+        navController.navigate(NavRoutes.RESULT) {
+            popUpTo(NavRoutes.MENU) { inclusive = true }
         }
         return
     }
@@ -68,7 +53,10 @@ fun QuizScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "Question ${currentIndexState.value + 1} of ${questions.size}")
+                    Text(
+                        text = stringResource(id = R.string.question_counter, currentIndexState.value + 1, questions.size
+                        )
+                    )
                 }
             )
         }
@@ -85,7 +73,6 @@ fun QuizScreen(
                 modifier = Modifier.padding(bottom = 16.dp)
             )
 
-            // Display answer options
             listOf(
                 Pair(1, currentQuestion.option1),
                 Pair(2, currentQuestion.option2),
@@ -105,30 +92,30 @@ fun QuizScreen(
             if (userAnswerState.value != null) {
                 val isCorrect = userAnswerState.value == currentQuestion.correctOption
                 Text(
-                    text = if (isCorrect) "Correct!" else "Incorrect!",
+                    text = if (isCorrect) stringResource(R.string.correct) else stringResource(R.string.incorrect),
                     color = if (isCorrect) Color.Green else Color.Red,
                     style = MaterialTheme.typography.headlineSmall,
                     modifier = Modifier.padding(vertical = 16.dp)
                 )
                 Text(
-                    text = "Explanation: ${currentQuestion.explanation}",
-                    style = MaterialTheme.typography.bodyMedium ,
+                    text = stringResource(R.string.explanation, currentQuestion.explanation),
+                    style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
                 Button(
                     onClick = {
                         if (currentIndexState.value == questions.size - 1) {
                             isLastQuestionAnswered = true
-                            navController.navigate("result") {
-                                popUpTo("menu") { inclusive = true }
+                            navController.navigate(NavRoutes.RESULT) {
+                                popUpTo(NavRoutes.MENU) { inclusive = true }
                             }
                         } else {
                             viewModel.nextQuestion()
                         }
-                              },
+                    },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(text = "Next")
+                    Text(text = stringResource(id = R.string.next))
                 }
             }
         }
