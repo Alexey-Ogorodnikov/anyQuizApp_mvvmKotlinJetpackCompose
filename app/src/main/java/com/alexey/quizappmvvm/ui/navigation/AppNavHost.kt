@@ -4,7 +4,9 @@ import android.app.Application
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -26,7 +28,8 @@ import kotlinx.coroutines.withContext
 
 @Composable
 fun AppNavHost(
-    repository: QuestionRepository
+    repository: QuestionRepository,
+    initialCsvTitle: String?
 ) {
 
     val navController = rememberNavController()
@@ -49,10 +52,12 @@ fun AppNavHost(
     }
 
     val dao = remember { database.questionDao() }  // Now safe to call
+    var csvTitle by remember { mutableStateOf(initialCsvTitle) }
 
     NavHost(navController = navController, startDestination = NavRoutes.MENU) {
         composable(NavRoutes.MENU) {
             MenuScreen(
+                csvTitle = csvTitle,
                 onQuizSelected = {
                     quizViewModel.resetQuiz() // Ensure fresh quiz data
                     quizViewModel.loadQuestions(QuizTypes.EASY)
@@ -74,12 +79,12 @@ fun AppNavHost(
                     navController.navigate(NavRoutes.QUIZ)
                 },
                 onCsvSelected = { uri ->
-                    val appContext = context.applicationContext
                     CoroutineScope(Dispatchers.IO).launch {
-                        val questionsFromCsv = readQuestionsFromCsv(appContext, uri)
-                        dao.insertQuestions(questionsFromCsv)
+                        val result = readQuestionsFromCsv(context, uri)
+                        dao.insertQuestions(result.questions)
 
-                        withContext(Dispatchers.Main) {  // Switch to main thread for UI updates
+                        withContext(Dispatchers.Main) {
+                            csvTitle = result.title ?: ""
                             quizViewModel.resetQuiz()
                             quizViewModel.loadQuestions(QuizTypes.EASY)
                             navController.navigate(NavRoutes.MENU)

@@ -10,9 +10,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 
-class QuizViewModel(private val repository: QuestionRepository) : ViewModel() {
+open class QuizViewModel(private var repository: QuestionRepository?) : ViewModel() {
 
-    private val _questions = MutableStateFlow<List<Question>>(emptyList())
+    internal val _questions = MutableStateFlow<List<Question>>(emptyList())
     val questions: StateFlow<List<Question>> = _questions
 
     private val _currentQuestionIndex = MutableStateFlow(0)
@@ -24,19 +24,19 @@ class QuizViewModel(private val repository: QuestionRepository) : ViewModel() {
     private val _totalCount = MutableStateFlow(0)
     val totalCount: StateFlow<Int> = _totalCount
 
-    private val _userAnswer = MutableStateFlow<Int?>(null)
+    internal val _userAnswer = MutableStateFlow<Int?>(null)
     val userAnswer: StateFlow<Int?> = _userAnswer
 
     fun loadQuestions(quizType: String) {
         viewModelScope.launch {
             val randomQuestions = when (quizType) {
-                QuizTypes.EASY -> repository.getEasyQuestions()
-                QuizTypes.NORMAL -> repository.getNormalQuestions()
-                QuizTypes.HARD -> repository.getHardQuestions()
-                QuizTypes.INSANE -> repository.getInsaneQuestions()
+                QuizTypes.EASY -> repository?.getEasyQuestions()
+                QuizTypes.NORMAL -> repository?.getNormalQuestions()
+                QuizTypes.HARD -> repository?.getHardQuestions()
+                QuizTypes.INSANE -> repository?.getInsaneQuestions()
                 else -> emptyList()
             }
-            _questions.value = randomQuestions
+            _questions.value = randomQuestions!!
             _totalCount.value = _questions.value.size
         }
     }

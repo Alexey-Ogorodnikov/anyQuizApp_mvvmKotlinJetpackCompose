@@ -38,6 +38,7 @@ import com.alexey.quizappmvvm.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MenuScreen(
+    csvTitle: String? = "",
     onQuizSelected: () -> Unit,
     onDevOpsQuizSelected: () -> Unit,
     onYandexDevQuizSelected: () -> Unit,
@@ -119,6 +120,14 @@ fun MenuScreen(
                 modifier = Modifier.padding(bottom = 24.dp)
             )
 
+            csvTitle?.let {
+                Text(
+                    text = it,
+                    style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.SemiBold),
+                    modifier = Modifier.padding(bottom = 24.dp)
+                )
+            }
+
             Button(
                 onClick = onQuizSelected,
                 modifier = Modifier
@@ -167,7 +176,8 @@ fun MenuScreenPreview() {
             onDevOpsQuizSelected = {},
             onYandexDevQuizSelected = {},
             onNasaQuizSelected = {},
-            onCsvSelected = {}
+            onCsvSelected = {},
+            csvTitle = "Top 100 Timeless Quotes"
         )
     }
 }

@@ -7,24 +7,36 @@ import com.opencsv.CSVReader
 import java.io.InputStream
 import java.io.InputStreamReader
 
-fun readQuestionsFromCsv(context: Context, filename: String): List<Question> {
+data class CsvResult(
+    val title: String?,
+    val questions: List<Question>
+)
+
+fun readQuestionsFromCsv(context: Context, filename: String): CsvResult {
     val inputStream = context.assets.open(filename)
     return parseCsv(inputStream)
 }
 
-fun readQuestionsFromCsv(context: Context, uri: Uri): List<Question> {
+fun readQuestionsFromCsv(context: Context, uri: Uri): CsvResult {
     return context.contentResolver.openInputStream(uri)?.use { inputStream ->
         parseCsv(inputStream)
-    } ?: emptyList()
+    } ?: CsvResult(null, emptyList())
 }
 
-private fun parseCsv(inputStream: InputStream): List<Question> {
+private fun parseCsv(inputStream: InputStream): CsvResult {
     val questions = mutableListOf<Question>()
+    var title: String? = null
     try {
         val reader = CSVReader(InputStreamReader(inputStream))
 
-        // skip header
-        reader.readNext()
+        // Check if the first line is title
+        val firstLine = reader.readNext()
+        if (firstLine != null && firstLine[0].startsWith("#")) {
+            title = firstLine[0].removePrefix("#").trim()
+        } else {
+            // fallback if title line was not found
+            reader.readNext() // skip header row if title was missing
+        }
 
         var line: Array<String>?
         while (reader.readNext().also { line = it } != null) {
@@ -45,5 +57,5 @@ private fun parseCsv(inputStream: InputStream): List<Question> {
     } catch (e: Exception) {
         e.printStackTrace()
     }
-    return questions
+    return CsvResult(title, questions)
 }
