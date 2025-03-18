@@ -1,21 +1,13 @@
 package com.alexey.quizappmvvm.ui.screens
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.alexey.quizappmvvm.utils.TOTAL_QUESTIONS
+import com.alexey.quizappmvvm.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -26,7 +18,7 @@ fun ResultScreen(
 ) {
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(text = "Quiz Results") })
+            TopAppBar(title = { Text(text = stringResource(id = R.string.quiz_results_title)) })
         }
     ) { innerPadding ->
         Column(
@@ -38,19 +30,19 @@ fun ResultScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Quiz Completed!",
+                text = stringResource(id = R.string.quiz_completed),
                 style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier.padding(bottom = 24.dp)
             )
 
             Text(
-                text = "Correct Answers: $correctCount",
+                text = stringResource(id = R.string.correct_answers, correctCount),
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 
             Text(
-                text = "Incorrect Answers: ${totalQuestions - correctCount}",
+                text = stringResource(id = R.string.incorrect_answers, totalQuestions - correctCount),
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(bottom = 24.dp)
             )
@@ -59,7 +51,7 @@ fun ResultScreen(
                 onClick = onBackToMenu,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "Back to Menu")
+                Text(text = stringResource(id = R.string.back_to_menu))
             }
         }
     }
