@@ -9,3 +9,9 @@ val Pink80 = Color(0xFFEFB8C8)
 val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
+
+val TopBarColor = Color(0xFF4E342E)
+
+val ButtonText = Color(0xFFEFEBE9)
+val CorrectColor = Color(0xFF16A34A) // Green-600
+val IncorrectColor = Color(0xFFDC2626) // Red-600

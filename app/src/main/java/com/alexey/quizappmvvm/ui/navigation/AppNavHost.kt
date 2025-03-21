@@ -1,6 +1,5 @@
 package com.alexey.quizappmvvm.ui.navigation
 
-import android.app.Application
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -58,22 +57,22 @@ fun AppNavHost(
         composable(NavRoutes.MENU) {
             MenuScreen(
                 csvTitle = csvTitle,
-                onQuizSelected = {
+                onEasySelected = {
                     quizViewModel.resetQuiz() // Ensure fresh quiz data
                     quizViewModel.loadQuestions(QuizTypes.EASY)
                     navController.navigate(NavRoutes.QUIZ)
                 },
-                onDevOpsQuizSelected = {
+                onNormalSelected = {
                     quizViewModel.resetQuiz() // Ensure fresh quiz data
                     quizViewModel.loadQuestions(QuizTypes.NORMAL)
                     navController.navigate(NavRoutes.QUIZ)
                 },
-                onYandexDevQuizSelected = {
+                onHardSelected = {
                     quizViewModel.resetQuiz() // Ensure fresh quiz data
                     quizViewModel.loadQuestions(QuizTypes.HARD)
                     navController.navigate(NavRoutes.QUIZ)
                 },
-                onNasaQuizSelected = {
+                onInsaneSelected = {
                     quizViewModel.resetQuiz() // Ensure fresh quiz data
                     quizViewModel.loadQuestions(QuizTypes.INSANE)
                     navController.navigate(NavRoutes.QUIZ)
