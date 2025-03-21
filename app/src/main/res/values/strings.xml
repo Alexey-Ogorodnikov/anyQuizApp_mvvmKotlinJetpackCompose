@@ -19,6 +19,7 @@
 
     <!-- Result screen  -->
     <string name="quiz_results_title">Quiz Results</string>
+    <string name="quiz_screen_title">Quiz</string>
     <string name="quiz_completed">Quiz Completed!</string>
     <string name="correct_answers">Correct Answers: %1$d</string>
     <string name="incorrect_answers">Incorrect Answers: %1$d</string>
