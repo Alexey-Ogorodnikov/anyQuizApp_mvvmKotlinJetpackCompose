@@ -13,9 +13,9 @@ android {
         applicationId = "com.alexey.quizappmvvm"
         minSdk = 26
         targetSdk = 35
-        versionCode = 3
-        versionName = "1.3"
-
+        versionCode = 4
+        versionName = "1.4"
+        buildConfigField("String", "OPENAI_API_KEY",  "\"${project.findProperty("OPENAI_API_KEY") as String}\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -38,6 +38,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -79,6 +80,10 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation (libs.opencsv)
+
+    implementation(libs.okhttp)
+    implementation(libs.json)
+
 
 
 }
