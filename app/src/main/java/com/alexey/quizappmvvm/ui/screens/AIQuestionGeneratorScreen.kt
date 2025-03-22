@@ -122,7 +122,7 @@ fun AIQuestionGeneratorScreen(
                     CenterAlignedTopAppBar(
                         title = {
                             Text(
-                                text = stringResource(id = R.string.quiz_results_title),
+                                text = stringResource(id = R.string.generate_questions_screen),
                                 color = ButtonText,
                                 fontWeight = FontWeight.Bold
                             )
