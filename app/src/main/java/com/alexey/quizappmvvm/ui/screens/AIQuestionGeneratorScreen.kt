@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -12,11 +13,21 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexey.quizappmvvm.BuildConfig
+import com.alexey.quizappmvvm.R
+import com.alexey.quizappmvvm.ui.components.WoodButton
+import com.alexey.quizappmvvm.ui.components.WoodFloatingButton
+import com.alexey.quizappmvvm.ui.theme.ButtonText
+import com.alexey.quizappmvvm.ui.theme.TopBarColor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -26,9 +37,10 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import org.json.JSONArray
 import org.json.JSONObject
-import java.io.IOException
+import java.net.SocketTimeoutException
 import java.util.concurrent.TimeUnit
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AIQuestionGeneratorScreen(
     onBack: () -> Unit
@@ -40,6 +52,7 @@ fun AIQuestionGeneratorScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    var language by remember { mutableStateOf("English") }
 
     val createCsvLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.CreateDocument("text/csv")
@@ -83,78 +96,163 @@ fun AIQuestionGeneratorScreen(
         }
     }
 
-    Scaffold(
-        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
-    ) { paddingValues ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(16.dp)
-        ) {
-            Column(
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxSize()
-            ) {
-                Text(
-                    text = "Enter Topic",
-                    style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
-                    modifier = Modifier.padding(bottom = 16.dp)
-                )
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.oakwood),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.matchParentSize()
+        )
 
-                TextField(
-                    value = topic,
-                    onValueChange = { topic = it },
-                    placeholder = { Text("e.g. Space Exploration") },
+        Scaffold(
+            snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+            containerColor = Color.Transparent,
+            topBar = {
+                Box(
                     modifier = Modifier.fillMaxWidth()
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                val keyboardController = LocalSoftwareKeyboardController.current
-
-                Button(
-                    onClick = {
-                        //hide keyboard
-                        keyboardController?.hide()
-
-                        isLoading = true
-                        scope.launch {
-                            val result = generateQuestionsWithAI(topic) { errorMsg ->
-                                scope.launch {
-                                    snackbarHostState.showSnackbar(errorMsg)
-                                }
-                            }
-                            isLoading = false
-                            if (result != null) {
-                                csvData = result
-                                createCsvLauncher.launch("quiz_${System.currentTimeMillis()}.csv")
-                            }
-                        }
-                    },
-                    enabled = topic.isNotBlank() && !isLoading
                 ) {
-                    Text("Generate questions with AI")
-                }
+                    Image(
+                        painter = painterResource(id = R.drawable.blankbrownwood),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.matchParentSize()
+                    )
+                    CenterAlignedTopAppBar(
+                        title = {
+                            Text(
+                                text = stringResource(id = R.string.quiz_results_title),
+                                color = ButtonText,
+                                fontWeight = FontWeight.Bold
+                            )
+                        },
+                        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                            containerColor = Color.Transparent
+                        ),
+                        modifier = Modifier.fillMaxWidth(),
 
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Button(
-                    onClick = { onBack() }
-                ) {
-                    Text("Back to Menu")
+                        )
                 }
             }
+        ) { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                if (isLoading) {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color(0x80000000))
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                }
 
-            if (isLoading) {
                 Box(
-                    contentAlignment = Alignment.Center,
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(Color(0x80000000))
+                        .padding(innerPadding)
+                        .padding(16.dp)
                 ) {
-                    CircularProgressIndicator()
+                    Column(
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(
+                            text = "Enter Topic any topic to generate you personalized 100 questions in any language!",
+                            style = MaterialTheme.typography.headlineSmall,
+                            color = TopBarColor,
+                            modifier = Modifier.padding(bottom = 24.dp),
+                            textAlign = TextAlign.Center
+                        )
+
+                        TextField(
+                            value = topic,
+                            onValueChange = { topic = it },
+                            placeholder = { Text("hint : Cars or Kotlin or DevOps or ... anything!\nTry your imagination!") },
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Text(
+                            text = "Enter Language",
+                            color = TopBarColor,
+                            style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+
+                        TextField(
+                            value = language,
+                            onValueChange = { language = it },
+                            placeholder = { Text("e.g. English, Spanish, French...") },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 16.dp),
+
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        val keyboardController = LocalSoftwareKeyboardController.current
+
+                        WoodFloatingButton(
+                            text = "Generate questions with AI",
+                            onClick = {
+                                //hide keyboard
+                                keyboardController?.hide()
+
+                                val sanitizedName = if (topic.isNotBlank()) {
+                                    topic.trim().replace("\\s+".toRegex(), "_").lowercase()
+                                } else {
+                                    "quiz"
+                                }
+
+                                val fileName = "${sanitizedName}.csv"
+                                val downloadsDir = context.getExternalFilesDir(android.os.Environment.DIRECTORY_DOWNLOADS)
+                                val file = java.io.File(downloadsDir, fileName)
+
+                                if (file.exists()) {
+                                    //file exist already
+                                    scope.launch {
+                                        snackbarHostState.showSnackbar("File '$fileName' already exists!")
+                                    }
+                                } else {
+                                    //make api call
+                                    isLoading = true
+                                    scope.launch {
+                                        val result = generateQuestionsWithAI(topic, language) { errorMsg ->
+                                            scope.launch { snackbarHostState.showSnackbar(errorMsg) }
+                                        }
+                                        isLoading = false
+                                        if (result != null) {
+                                            csvData = result
+                                            createCsvLauncher.launch(fileName)
+                                        }
+                                    }
+                                }
+                            },
+                            enabled = topic.isNotBlank() && !isLoading
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        WoodButton(
+                            onClick = { onBack() },
+                            text = "Back to Menu",
+                            modifier = Modifier
+                                .padding(top = 50.dp)
+                                .width(200.dp)
+                                .height(50.dp),
+                        )
+                    }
                 }
             }
         }
@@ -163,6 +261,7 @@ fun AIQuestionGeneratorScreen(
 
 suspend fun generateQuestionsWithAI(
     topic: String,
+    language: String,
     onError: suspend (String) -> Unit
 ): String? {
 
@@ -179,7 +278,7 @@ suspend fun generateQuestionsWithAI(
                 put("role", "user")
                 put(
                     "content",
-                    "Generate 100 quiz questions about: $topic. Format as CSV with columns: id,questionText,option1,option2,option3,correctOption,explanation"
+                    "Generate 51 quiz questions about: $topic in $language.. Format as CSV with columns: id,questionText,option1,option2,option3,correctOption,explanation"
                 )
             }
         )
@@ -224,7 +323,7 @@ suspend fun generateQuestionsWithAI(
                     .getString("content")
                 csvContent.trim()
             }
-        } catch (e: java.net.SocketTimeoutException) {
+        } catch (e: SocketTimeoutException) {
             onError("Request timed out. Try again later.")
             null
         } catch (e: Exception) {
@@ -239,5 +338,17 @@ suspend fun saveCsvWithSAF(context: Context, uri: Uri, csvData: String) {
         context.contentResolver.openOutputStream(uri)?.use { outputStream ->
             outputStream.write(csvData.toByteArray())
         }
+    }
+}
+
+
+@Preview(showSystemUi = true, showBackground = true)
+@Composable
+fun AIQuestionGeneratorScreenPreviewFilled() {
+    MaterialTheme {
+        var topic by remember { mutableStateOf("Space Exploration") }
+        AIQuestionGeneratorScreen(
+            onBack = {}
+        )
     }
 }
