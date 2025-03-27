@@ -1,8 +1,7 @@
 package com.alexey.quizappmvvm.ui.screens
 
-import android.content.Context
-import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -28,6 +27,7 @@ import com.alexey.quizappmvvm.ui.components.WoodButton
 import com.alexey.quizappmvvm.ui.components.WoodFloatingButton
 import com.alexey.quizappmvvm.ui.theme.ButtonText
 import com.alexey.quizappmvvm.ui.theme.TopBarColor
+import com.alexey.quizappmvvm.utils.saveCsvWithSAF
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -43,13 +43,13 @@ import java.util.concurrent.TimeUnit
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AIQuestionGeneratorScreen(
+    onCsvSelected: (Uri) -> Unit,
     onBack: () -> Unit
 ) {
     var topic by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(false) }
     var csvData by remember { mutableStateOf<String?>(null) }
 
-    val snackbarHostState = remember { SnackbarHostState() }
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     var language by remember { mutableStateOf("English") }
@@ -62,43 +62,15 @@ fun AIQuestionGeneratorScreen(
                 saveCsvWithSAF(context, uri, csvData!!)
                 csvData = null
 
-                val result = snackbarHostState.showSnackbar(
-                    message = "CSV saved successfully!",
-                    actionLabel = "Open",
-                    duration = SnackbarDuration.Long
-                )
+                Toast.makeText(context, "CSV saved successfully!", Toast.LENGTH_LONG).show()
 
-                if (result == SnackbarResult.ActionPerformed) {
-                    val openIntent = Intent(Intent.ACTION_VIEW).apply {
-                        setDataAndType(uri, "text/csv")
-                        flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK
-                    }
-                    context.startActivity(openIntent)
-                } else {
-                    val shareResult = snackbarHostState.showSnackbar(
-                        message = "Want to share it?",
-                        actionLabel = "Share",
-                        duration = SnackbarDuration.Short
-                    )
+                onCsvSelected(uri)
 
-                    if (shareResult == SnackbarResult.ActionPerformed) {
-                        val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                            type = "text/csv"
-                            putExtra(Intent.EXTRA_STREAM, uri)
-                            flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK
-                        }
-                        context.startActivity(
-                            Intent.createChooser(shareIntent, "Share CSV via")
-                        )
-                    }
-                }
             }
         }
     }
 
-    Box(
-        modifier = Modifier.fillMaxSize()
-    ) {
+    Box(modifier = Modifier.fillMaxSize()) {
         Image(
             painter = painterResource(id = R.drawable.oakwood),
             contentDescription = null,
@@ -106,40 +78,40 @@ fun AIQuestionGeneratorScreen(
             modifier = Modifier.matchParentSize()
         )
 
-        Scaffold(
-            snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
-            containerColor = Color.Transparent,
-            topBar = {
-                Box(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.blankbrownwood),
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.matchParentSize()
-                    )
-                    CenterAlignedTopAppBar(
-                        title = {
-                            Text(
-                                text = stringResource(id = R.string.generate_questions_screen),
-                                color = ButtonText,
-                                fontWeight = FontWeight.Bold
-                            )
-                        },
-                        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                            containerColor = Color.Transparent
-                        ),
-                        modifier = Modifier.fillMaxWidth(),
-
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            // Custom TopBar
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(120.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.blankbrownwood),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.matchParentSize()
+                )
+                CenterAlignedTopAppBar(
+                    title = {
+                        Text(
+                            text = stringResource(id = R.string.generate_questions_screen),
+                            color = ButtonText,
+                            fontWeight = FontWeight.Bold
                         )
-                }
+                    },
+                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                        containerColor = Color.Transparent
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
-        ) { innerPadding ->
+
+            // Content
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding)
                     .padding(16.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -155,105 +127,93 @@ fun AIQuestionGeneratorScreen(
                     }
                 }
 
-                Box(
+                Text(
+                    text = "Enter Topic any topic to generate your personalized 100 questions in any language!",
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = TopBarColor,
+                    modifier = Modifier.padding(bottom = 24.dp),
+                    textAlign = TextAlign.Center
+                )
+
+                TextField(
+                    value = topic,
+                    onValueChange = { topic = it },
+                    placeholder = {
+                        Text("hint : Cars or Kotlin or DevOps or ... anything!\nTry your imagination!")
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text(
+                    text = "Enter Language",
+                    color = TopBarColor,
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+
+                TextField(
+                    value = language,
+                    onValueChange = { language = it },
+                    placeholder = { Text("e.g. English, Spanish, French...") },
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding)
-                        .padding(16.dp)
-                ) {
-                    Column(
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text(
-                            text = "Enter Topic any topic to generate you personalized 100 questions in any language!",
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = TopBarColor,
-                            modifier = Modifier.padding(bottom = 24.dp),
-                            textAlign = TextAlign.Center
-                        )
+                        .fillMaxWidth()
+                        .padding(bottom = 16.dp)
+                )
 
-                        TextField(
-                            value = topic,
-                            onValueChange = { topic = it },
-                            placeholder = { Text("hint : Cars or Kotlin or DevOps or ... anything!\nTry your imagination!") },
-                            modifier = Modifier.fillMaxWidth(),
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-                        Text(
-                            text = "Enter Language",
-                            color = TopBarColor,
-                            style = MaterialTheme.typography.titleMedium,
-                            modifier = Modifier.align(Alignment.CenterHorizontally)
-                        )
+                val keyboardController = LocalSoftwareKeyboardController.current
 
-                        TextField(
-                            value = language,
-                            onValueChange = { language = it },
-                            placeholder = { Text("e.g. English, Spanish, French...") },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(bottom = 16.dp),
+                WoodFloatingButton(
+                    text = "Generate questions with AI",
+                    onClick = {
+                        keyboardController?.hide()
 
-                        )
+                        val sanitizedName = if (topic.isNotBlank()) {
+                            topic.trim().replace("\\s+".toRegex(), "_").uppercase()
+                        } else {
+                            "quiz".uppercase()
+                        }
 
-                        Spacer(modifier = Modifier.height(16.dp))
+                        val fileName = "${sanitizedName}_quiz.csv"
+                        val downloadsDir = context.getExternalFilesDir(android.os.Environment.DIRECTORY_DOWNLOADS)
+                        val file = java.io.File(downloadsDir, fileName)
 
-                        val keyboardController = LocalSoftwareKeyboardController.current
-
-                        WoodFloatingButton(
-                            text = "Generate questions with AI",
-                            onClick = {
-                                //hide keyboard
-                                keyboardController?.hide()
-
-                                val sanitizedName = if (topic.isNotBlank()) {
-                                    topic.trim().replace("\\s+".toRegex(), "_").lowercase()
-                                } else {
-                                    "quiz"
+                        if (file.exists()) {
+                            Toast.makeText(
+                                context,
+                                "File '$fileName' already exists!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            isLoading = true
+                            scope.launch {
+                                val result = generateQuestionsWithAI(topic, language) { errorMsg ->
+                                    Toast.makeText(context, errorMsg, Toast.LENGTH_LONG).show()
                                 }
-
-                                val fileName = "${sanitizedName}.csv"
-                                val downloadsDir = context.getExternalFilesDir(android.os.Environment.DIRECTORY_DOWNLOADS)
-                                val file = java.io.File(downloadsDir, fileName)
-
-                                if (file.exists()) {
-                                    //file exist already
-                                    scope.launch {
-                                        snackbarHostState.showSnackbar("File '$fileName' already exists!")
-                                    }
-                                } else {
-                                    //make api call
-                                    isLoading = true
-                                    scope.launch {
-                                        val result = generateQuestionsWithAI(topic, language) { errorMsg ->
-                                            scope.launch { snackbarHostState.showSnackbar(errorMsg) }
-                                        }
-                                        isLoading = false
-                                        if (result != null) {
-                                            csvData = result
-                                            createCsvLauncher.launch(fileName)
-                                        }
-                                    }
+                                isLoading = false
+                                if (result != null) {
+                                    csvData = result
+                                    createCsvLauncher.launch(fileName)
                                 }
-                            },
-                            enabled = topic.isNotBlank() && !isLoading
-                        )
+                            }
+                        }
+                    },
+                    enabled = topic.isNotBlank() && !isLoading
+                )
 
-                        Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-                        WoodButton(
-                            onClick = { onBack() },
-                            text = "Back to Menu",
-                            modifier = Modifier
-                                .padding(top = 50.dp)
-                                .width(200.dp)
-                                .height(50.dp),
-                        )
-                    }
-                }
+                WoodButton(
+                    onClick = { onBack() },
+                    text = "Back to Menu",
+                    modifier = Modifier
+                        .padding(top = 50.dp)
+                        .width(200.dp)
+                        .height(50.dp)
+                )
             }
         }
     }
@@ -278,7 +238,30 @@ suspend fun generateQuestionsWithAI(
                 put("role", "user")
                 put(
                     "content",
-                    "Generate 51 quiz questions about: $topic in $language.. Format as CSV with columns: id,questionText,option1,option2,option3,correctOption,explanation"
+                    """
+    Generate 50 quiz questions about: $topic in $language.
+        
+        Format the output as CSV with the very strict rule :
+        first line always the topic name with symbole # $topic,
+        
+        second line a header row:
+        id,questionText,option1,option2,option3,correctOption,explanation
+
+        all next lines questions for example line 3 will be: 
+        1,In the middle of difficulty lies opportunity.,Albert Einstein,Seneca,Immanuel Kant,1,This quote belongs to Albert Einstein.
+        
+        correctOption should be a digit from 1 to 3 indicating the correct answer.
+
+        Use the following format as an example:
+
+        # Top 100 Timeless Quotes
+        id,questionText,option1,option2,option3,correctOption,explanation
+        1,Be the change that you wish to see in the world.,Confucius,Sun Tzu,Mahatma Gandhi,3,This quote belongs to Mahatma Gandhi.
+        2,The only thing we have to fear is fear itself.,Seneca,Franklin D. Roosevelt,Immanuel Kant,2,This quote belongs to Franklin D. Roosevelt.
+        3,In the middle of difficulty lies opportunity.,Albert Einstein,Seneca,Immanuel Kant,1,This quote belongs to Albert Einstein.
+        4,"Do not go where the path may lead, go instead where there is no path and leave a trail.",Seneca,Epictetus,Ralph Waldo Emerson,3,This quote belongs to Ralph Waldo Emerson.
+        5,The journey of a thousand miles begins with a single step.,Socrates,Sun Tzu,Lao Tzu,3,This quote belongs to Lao Tzu.
+        """.trimIndent()
                 )
             }
         )
@@ -333,13 +316,7 @@ suspend fun generateQuestionsWithAI(
     }
 }
 
-suspend fun saveCsvWithSAF(context: Context, uri: Uri, csvData: String) {
-    withContext(Dispatchers.IO) {
-        context.contentResolver.openOutputStream(uri)?.use { outputStream ->
-            outputStream.write(csvData.toByteArray())
-        }
-    }
-}
+
 
 
 @Preview(showSystemUi = true, showBackground = true)
@@ -348,6 +325,7 @@ fun AIQuestionGeneratorScreenPreviewFilled() {
     MaterialTheme {
         var topic by remember { mutableStateOf("Space Exploration") }
         AIQuestionGeneratorScreen(
+            onCsvSelected = {},
             onBack = {}
         )
     }

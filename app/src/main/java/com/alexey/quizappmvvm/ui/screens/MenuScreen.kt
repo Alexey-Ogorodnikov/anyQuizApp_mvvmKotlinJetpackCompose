@@ -41,7 +41,6 @@ import com.alexey.quizappmvvm.R
 import com.alexey.quizappmvvm.ui.components.WoodFloatingButton
 import com.alexey.quizappmvvm.ui.theme.ButtonText
 import com.alexey.quizappmvvm.ui.theme.TopBarColor
-
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.mutableStateOf
@@ -82,7 +81,9 @@ fun MenuScreen(
             containerColor = Color.Transparent,
             topBar = {
                 Box(
-                    modifier = Modifier.fillMaxWidth().height(64.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(120.dp)
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.blankbrownwood),
@@ -115,7 +116,9 @@ fun MenuScreen(
                         containerColor = Color.Transparent
                     ) {
                         Box(
-                            modifier = Modifier.height(55.dp).width(55.dp)
+                            modifier = Modifier
+                                .height(55.dp)
+                                .width(55.dp)
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.blankbrownwood),
@@ -127,7 +130,9 @@ fun MenuScreen(
                                 imageVector = Icons.Default.Add,
                                 contentDescription = "Open Menu",
                                 tint = Color.White,
-                                modifier = Modifier.align(Alignment.Center).size(30.dp)
+                                modifier = Modifier
+                                    .align(Alignment.Center)
+                                    .size(30.dp)
                             )
                         }
                     }
@@ -193,7 +198,7 @@ fun MenuScreen(
                 WoodFloatingButton (textRes = R.string.easy_label, onClick = onEasySelected)
                 WoodFloatingButton (textRes = R.string.normal_label, onClick = onNormalSelected)
                 WoodFloatingButton (textRes = R.string.hard_label, onClick = onHardSelected)
-                WoodFloatingButton (textRes = R.string.insane_label, onClick = onInsaneSelected)
+//                WoodFloatingButton (textRes = R.string.insane_label, onClick = onInsaneSelected)
             }
         }
     }

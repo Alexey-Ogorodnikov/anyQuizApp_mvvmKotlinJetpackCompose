@@ -2,11 +2,15 @@ package com.alexey.quizappmvvm.utils
 
 import android.content.Context
 import android.net.Uri
+import androidx.compose.runtime.Immutable
 import com.alexey.quizappmvvm.data.model.Question
 import com.opencsv.CSVReader
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.InputStream
 import java.io.InputStreamReader
 
+@Immutable
 data class CsvResult(
     val title: String?,
     val questions: List<Question>
@@ -57,5 +61,20 @@ private fun parseCsv(inputStream: InputStream): CsvResult {
     } catch (e: Exception) {
         e.printStackTrace()
     }
-    return CsvResult(title, questions)
+    return CsvResult(title?.uppercase(), questions)
+}
+
+suspend fun saveCsvWithSAF(context: Context, uri: Uri, csvData: String) {
+    withContext(Dispatchers.IO) {
+        val cleanedCsv = csvData
+            .trim()
+            .lines()
+            .dropWhile { it.trim() == "```csv" } // remove first line if it’s ```csv
+            .dropLastWhile { it.trim() == "```" } // remove last line if it’s ```
+            .joinToString("\n")
+
+        context.contentResolver.openOutputStream(uri)?.use { outputStream ->
+            outputStream.write(cleanedCsv.toByteArray())
+        }
+    }
 }

@@ -39,7 +39,9 @@ fun ResultScreen(
             containerColor = Color.Transparent,
             topBar = {
                 Box(
-                    modifier = Modifier.fillMaxWidth().height(64.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(120.dp)
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.blankbrownwood),

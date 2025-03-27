@@ -13,8 +13,8 @@ android {
         applicationId = "com.alexey.quizappmvvm"
         minSdk = 26
         targetSdk = 35
-        versionCode = 4
-        versionName = "1.4"
+        versionCode = 6
+        versionName = "1.6"
         buildConfigField("String", "OPENAI_API_KEY",  "\"${project.findProperty("OPENAI_API_KEY") as String}\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
