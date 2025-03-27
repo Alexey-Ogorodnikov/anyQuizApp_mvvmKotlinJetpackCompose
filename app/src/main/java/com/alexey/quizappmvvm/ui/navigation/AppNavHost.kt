@@ -124,6 +124,18 @@ fun AppNavHost(
 
         composable(NavRoutes.AI_GENERATOR) {
             AIQuestionGeneratorScreen(
+                onCsvSelected = { uri ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val result = readQuestionsFromCsv(context, uri)
+                        dao.insertQuestions(result.questions)
+
+                        withContext(Dispatchers.Main) {
+                            csvTitle = result.title ?: ""
+                            quizViewModel.resetQuiz()
+                            navController.navigate(NavRoutes.MENU)
+                        }
+                    }
+                },
                 onBack = {
                     navController.popBackStack()
                 }
