@@ -41,6 +41,10 @@ import com.alexey.quizappmvvm.R
 import com.alexey.quizappmvvm.ui.components.WoodFloatingButton
 import com.alexey.quizappmvvm.ui.theme.ButtonText
 import com.alexey.quizappmvvm.ui.theme.TopBarColor
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,7 +54,8 @@ fun MenuScreen(
     onNormalSelected: () -> Unit,
     onHardSelected: () -> Unit,
     onInsaneSelected: () -> Unit,
-    onCsvSelected: (Uri) -> Unit
+    onCsvSelected: (Uri) -> Unit,
+    onGenerateAIQuestions: () -> Unit
 ) {
     val filePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()
@@ -76,7 +81,9 @@ fun MenuScreen(
             containerColor = Color.Transparent,
             topBar = {
                 Box(
-                    modifier = Modifier.fillMaxWidth().height(64.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(120.dp)
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.blankbrownwood),
@@ -100,34 +107,60 @@ fun MenuScreen(
                     )
                 }
         },
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
-                        type = "*/*"
+            floatingActionButton = {
+                val expanded = remember { mutableStateOf(false) }
+
+                Box {
+                    FloatingActionButton(
+                        onClick = { expanded.value = true },
+                        containerColor = Color.Transparent
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .height(55.dp)
+                                .width(55.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.blankbrownwood),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.matchParentSize()
+                            )
+                            Icon(
+                                imageVector = Icons.Default.Add,
+                                contentDescription = "Open Menu",
+                                tint = Color.White,
+                                modifier = Modifier
+                                    .align(Alignment.Center)
+                                    .size(30.dp)
+                            )
+                        }
                     }
-                    filePickerLauncher.launch(intent)
-                },
-                containerColor = Color.Transparent
-            ) {
-                Box(
-                    modifier = Modifier.height(55.dp).width(55.dp)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.blankbrownwood),
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.matchParentSize()
-                    )
-                    Icon(
-                        imageVector = Icons.Default.Add,
-                        contentDescription = "Select CSV",
-                        tint = Color.White,
-                        modifier = Modifier.align(Alignment.Center).size(30.dp)
-                    )
+
+                    DropdownMenu(
+                        expanded = expanded.value,
+                        onDismissRequest = { expanded.value = false }
+                    ) {
+                        DropdownMenuItem(
+                            text = { Text("Open file from your device") },
+                            onClick = {
+                                expanded.value = false
+                                val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+                                    type = "*/*"
+                                }
+                                filePickerLauncher.launch(intent)
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("Generate file with AI") },
+                            onClick = {
+                                expanded.value = false
+                                onGenerateAIQuestions() // вот тут вызов
+                            }
+                        )
+                    }
                 }
             }
-        }
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -165,7 +198,7 @@ fun MenuScreen(
                 WoodFloatingButton (textRes = R.string.easy_label, onClick = onEasySelected)
                 WoodFloatingButton (textRes = R.string.normal_label, onClick = onNormalSelected)
                 WoodFloatingButton (textRes = R.string.hard_label, onClick = onHardSelected)
-                WoodFloatingButton (textRes = R.string.insane_label, onClick = onInsaneSelected)
+//                WoodFloatingButton (textRes = R.string.insane_label, onClick = onInsaneSelected)
             }
         }
     }
@@ -182,6 +215,7 @@ fun MenuScreenPreview() {
             onHardSelected = {},
             onInsaneSelected = {},
             onCsvSelected = {},
+            onGenerateAIQuestions = {},
             csvTitle = "Top 100 Timeless Quotes"
         )
     }

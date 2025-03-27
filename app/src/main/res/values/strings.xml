@@ -25,4 +25,7 @@
     <string name="incorrect_answers">Incorrect Answers: %1$d</string>
     <string name="back_to_menu">Back to Menu</string>
 
+    <!-- Generate questions screen  -->
+    <string name="generate_questions_screen">Generate Questions</string>
+
 </resources>

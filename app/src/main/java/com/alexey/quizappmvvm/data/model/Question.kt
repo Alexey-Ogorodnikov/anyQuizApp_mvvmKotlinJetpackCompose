@@ -1,8 +1,10 @@
 package com.alexey.quizappmvvm.data.model
 
+import androidx.compose.runtime.Immutable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Immutable
 @Entity(tableName = "questions")
 data class Question(
     @PrimaryKey val id: Int,

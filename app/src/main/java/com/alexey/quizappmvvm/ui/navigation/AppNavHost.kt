@@ -14,6 +14,7 @@ import androidx.room.Room
 import com.alexey.quizappmvvm.data.db.AppDatabase
 import com.alexey.quizappmvvm.data.repository.QuestionRepository
 import com.alexey.quizappmvvm.navigation.NavRoutes
+import com.alexey.quizappmvvm.ui.screens.AIQuestionGeneratorScreen
 import com.alexey.quizappmvvm.ui.screens.MenuScreen
 import com.alexey.quizappmvvm.ui.screens.QuizScreen
 import com.alexey.quizappmvvm.ui.screens.ResultScreen
@@ -89,6 +90,9 @@ fun AppNavHost(
                             navController.navigate(NavRoutes.MENU)
                         }
                     }
+                },
+                onGenerateAIQuestions = {
+                    navController.navigate(NavRoutes.AI_GENERATOR)
                 }
             )
         }
@@ -114,6 +118,26 @@ fun AppNavHost(
                     navController.navigate(NavRoutes.MENU) {
                         popUpTo(NavRoutes.MENU) { inclusive = true }
                     }
+                }
+            )
+        }
+
+        composable(NavRoutes.AI_GENERATOR) {
+            AIQuestionGeneratorScreen(
+                onCsvSelected = { uri ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val result = readQuestionsFromCsv(context, uri)
+                        dao.insertQuestions(result.questions)
+
+                        withContext(Dispatchers.Main) {
+                            csvTitle = result.title ?: ""
+                            quizViewModel.resetQuiz()
+                            navController.navigate(NavRoutes.MENU)
+                        }
+                    }
+                },
+                onBack = {
+                    navController.popBackStack()
                 }
             )
         }
